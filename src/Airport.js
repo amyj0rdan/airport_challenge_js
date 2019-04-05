@@ -8,8 +8,12 @@ Airport.prototype = {
   constructor: Airport,
 
   land: function(plane) {
+    if (this.weather.isStormy()) {
+      throw new Error('Too stormy to land');
+    } else {
       this.hangar.push(plane);
       plane.land(this);
+    }
   },
 
   takeOff: function(plane) {

@@ -36,11 +36,21 @@ describe('Feature Test', function() {
 // To ensure safety
 // I want to prevent takeoff when weather is stormy
 
-  it('does not allow a plane to land when stormy', function() {
+  it('does not allow a plane to take off when stormy', function() {
     spyOn(Math, 'random').and.returnValue(0.2);
     airport.land(plane);
     Math.random = jasmine.createSpy().and.returnValue(1);
     expect( function() { airport.takeOff(plane); }).toThrow(new Error('Too stormy to take off'));
     expect(airport.hangar).toContain(plane);
+  });
+
+// As an air traffic controller
+// To ensure safety
+// I want to prevent landing when weather is stormy
+
+  it('does not allow a plane to land when stormy', function() {
+    spyOn(Math, 'random').and.returnValue(0.95);
+    expect( function() { airport.land(plane); }).toThrow(new Error('Too stormy to land'));
+    expect(airport.hangar).not.toContain(plane);
   });
 });
