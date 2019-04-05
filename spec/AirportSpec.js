@@ -7,7 +7,7 @@ describe("Airport", function() {
   beforeEach(function() {
     plane = jasmine.createSpyObj('plane', ['land', 'takeOff'])
     weather = jasmine.createSpyObj('weather', ['isStormy'])
-    airport = new Airport(2, weather);
+    airport = new Airport({capacity: 2, weather: weather});
   });
 
   describe('weather is not stormy', function () {
@@ -50,7 +50,7 @@ describe("Airport", function() {
   });
 
   it('allows different airports to have different capacities', function() {
-    airportWithDiffCapacity = new Airport(10);
+    airportWithDiffCapacity = new Airport({capacity:10});
     expect(airportWithDiffCapacity.capacity).toEqual(10);
   });
 

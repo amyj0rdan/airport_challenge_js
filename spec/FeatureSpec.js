@@ -4,7 +4,7 @@ describe('Feature Test', function() {
   var plane;
 
   beforeEach(function() {
-    airport = new Airport;
+    airport = new Airport({});
     plane = new Plane;
     weather = new Weather;
   });
@@ -72,7 +72,7 @@ describe('Feature Test', function() {
 // I would like a default airport capacity that can be overridden as appropriate
 
   it('allows different airports to have different capacities', function() {
-    airportWithDiffCapacity = new Airport(10);
+    airportWithDiffCapacity = new Airport({capacity:10});
     expect(airportWithDiffCapacity.capacity).toEqual(10);
   });
 });

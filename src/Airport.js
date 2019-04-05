@@ -1,4 +1,4 @@
-function Airport(capacity = 2, weather = new Weather) {
+function Airport({capacity = 2, weather = new Weather}) {
   this.hangar = [];
   this.weather = weather;
   this.capacity = capacity;
