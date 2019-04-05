@@ -2,10 +2,15 @@ function Plane() {
   this.airport = null;
 }
 
-Plane.prototype.land = function(airport) {
-  this.airport = airport;
-}
+Plane.prototype = {
 
-Plane.prototype.takeOff = function(airport) {
-  this.airport = null;
+  constructor: Plane,
+
+  land: function(airport) {
+    this.airport = airport;
+  },
+
+  takeOff: function(airport) {
+    this.airport = null;
+  },
 }

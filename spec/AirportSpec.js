@@ -51,7 +51,6 @@ describe("Airport", function() {
 
   it('allows different airports to have different capacities', function() {
     airportWithDiffCapacity = new Airport(10);
-    console.log(airportWithDiffCapacity.capacity);
     expect(airportWithDiffCapacity.capacity).toEqual(10);
   });
 
