@@ -53,4 +53,16 @@ describe('Feature Test', function() {
     expect( function() { airport.land(plane); }).toThrow(new Error('Too stormy to land'));
     expect(airport.hangar).not.toContain(plane);
   });
+
+// As an air traffic controller
+// To ensure safety
+// I want to prevent landing when the airport is full
+
+  it('does not allow a plane to land when airport is full', function() {
+    spyOn(Math, 'random').and.returnValue(0.2);
+    for (i = 0; i < airport.DEFAULT_CAPACITY; i++) {
+      airport.land(plane);
+    }
+    expect( function() { airport.land(plane); }).toThrow(new Error('Airport too full for landing'));
+  });
 });

@@ -26,6 +26,13 @@ describe("Airport", function() {
       airport.takeOff(plane);
       expect(airport.hangar).not.toContain(plane);
     });
+
+    it('does not allow plane to land when airport is full', function() {
+      for (i = 0; i < airport.DEFAULT_CAPACITY; i++) {
+        airport.land(plane);
+      }
+      expect( function() { airport.land(plane); }).toThrow(new Error('Airport too full for landing'));
+    });
   });
 
   describe('weather is stormy', function() {
