@@ -7,7 +7,7 @@ describe("Airport", function() {
   beforeEach(function() {
     plane = jasmine.createSpyObj('plane', ['land', 'takeOff'])
     weather = jasmine.createSpyObj('weather', ['isStormy'])
-    airport = new Airport(weather);
+    airport = new Airport(2, weather);
   });
 
   describe('weather is not stormy', function () {
@@ -28,7 +28,7 @@ describe("Airport", function() {
     });
 
     it('does not allow plane to land when airport is full', function() {
-      for (i = 0; i < airport.DEFAULT_CAPACITY; i++) {
+      for (i = 0; i < airport.capacity; i++) {
         airport.land(plane);
       }
       expect( function() { airport.land(plane); }).toThrow(new Error('Airport too full for landing'));
@@ -47,6 +47,12 @@ describe("Airport", function() {
       weather.isStormy = jasmine.createSpy().and.returnValue(true);
       expect( function() { airport.land(plane); }).toThrow(new Error('Too stormy to land'));
     });
+  });
+
+  it('allows different airports to have different capacities', function() {
+    airportWithDiffCapacity = new Airport(10);
+    console.log(airportWithDiffCapacity.capacity);
+    expect(airportWithDiffCapacity.capacity).toEqual(10);
   });
 
 });

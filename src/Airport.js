@@ -1,7 +1,7 @@
-function Airport(weather = new Weather) {
+function Airport(capacity = 2, weather = new Weather) {
   this.hangar = [];
   this.weather = weather;
-  this.DEFAULT_CAPACITY = 2;
+  this.capacity = capacity;
 }
 
 Airport.prototype = {
@@ -37,7 +37,7 @@ Airport.prototype = {
   },
 
   isFull: function() {
-    if (this.hangar.length >= this.DEFAULT_CAPACITY) {
+    if (this.hangar.length >= this.capacity) {
       return true;
     } else {
       return false;

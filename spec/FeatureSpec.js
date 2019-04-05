@@ -6,6 +6,7 @@ describe('Feature Test', function() {
   beforeEach(function() {
     airport = new Airport;
     plane = new Plane;
+    weather = new Weather;
   });
 
 // User story 1
@@ -60,9 +61,18 @@ describe('Feature Test', function() {
 
   it('does not allow a plane to land when airport is full', function() {
     spyOn(Math, 'random').and.returnValue(0.2);
-    for (i = 0; i < airport.DEFAULT_CAPACITY; i++) {
+    for (i = 0; i < airport.capacity; i++) {
       airport.land(plane);
     }
     expect( function() { airport.land(plane); }).toThrow(new Error('Airport too full for landing'));
+  });
+
+// As the system designer
+// So that the software can be used for many different airports
+// I would like a default airport capacity that can be overridden as appropriate
+
+  it('allows different airports to have different capacities', function() {
+    airportWithDiffCapacity = new Airport(10);
+    expect(airportWithDiffCapacity.capacity).toEqual(10);
   });
 });
