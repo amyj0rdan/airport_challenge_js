@@ -2,10 +2,12 @@ describe("Airport", function() {
 
   var airport;
   var plane;
+  var plane2;
   var weather;
 
   beforeEach(function() {
     plane = jasmine.createSpyObj('plane', ['land', 'takeOff'])
+    plane2 = jasmine.createSpyObj('plane', ['land', 'takeOff'])
     weather = jasmine.createSpyObj('weather', ['isStormy'])
     airport = new Airport({capacity: 2, weather: weather});
   });
@@ -19,6 +21,12 @@ describe("Airport", function() {
     it('can land a plane', function() {
       airport.land(plane);
       expect(airport.hangar).toContain(plane);
+    });
+
+    it('can log landing of second plane', function() {
+      airport.land(plane);
+      airport.land(plane2);
+      expect(airport.hangar).toContain(plane2);
     });
 
     it('can allow a plane to take off', function() {
